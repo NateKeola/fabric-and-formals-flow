@@ -1,25 +1,11 @@
-
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
-import HeroSection from '@/components/home/HeroSection';
-import FeaturedFabrics from '@/components/home/FeaturedFabrics';
-import CustomDesigns from '@/components/home/CustomDesigns';
-import Testimonials from '@/components/home/Testimonials';
-import ContactCTA from '@/components/home/ContactCTA';
+import MinimalLayout from '@/components/layout/MinimalLayout';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-grow">
-        <HeroSection />
-        <FeaturedFabrics />
-        <CustomDesigns />
-        <Testimonials />
-        <ContactCTA />
-      </main>
-      <Footer />
-    </div>
+    <MinimalLayout>
+      <h1 className="text-5xl font-extrabold mb-4 font-sans uppercase">Welcome to Formal Factory</h1>
+      <p className="text-lg mb-2 font-sans text-white/80">Premium fabrics and bespoke formal wear for your most special occasions.</p>
+    </MinimalLayout>
   );
 };
 

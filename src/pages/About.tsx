@@ -1,21 +1,11 @@
-
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
+import MinimalLayout from '@/components/layout/MinimalLayout';
 
 const About = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-grow py-12">
-        <div className="container mx-auto px-4">
-          <h1 className="font-serif text-4xl font-bold text-navy mb-8">About Formal Factory</h1>
-          <p className="text-lg mb-12">
-            Coming soon: Learn more about Dee and the story behind Formal Factory.
-          </p>
-        </div>
-      </main>
-      <Footer />
-    </div>
+    <MinimalLayout>
+      <h1 className="text-5xl font-extrabold mb-4 font-sans uppercase">About Formal Factory</h1>
+      <p className="text-lg mb-2 font-sans text-white/80">Coming soon: Learn more about Dee and the story behind Formal Factory.</p>
+    </MinimalLayout>
   );
 };
 
