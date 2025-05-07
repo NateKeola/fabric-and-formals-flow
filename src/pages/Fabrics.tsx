@@ -50,6 +50,136 @@ const Fabrics = () => {
                   <TabsTrigger value="wool">Wool</TabsTrigger>
                   <TabsTrigger value="special">Special</TabsTrigger>
                 </TabsList>
+                
+                <TabsContent value="all" className="w-full">
+                  {viewMode === 'carousel' ? (
+                    <div className="w-full py-10">
+                      <Carousel className="w-full max-w-4xl mx-auto">
+                        <CarouselContent>
+                          {fabrics.map((fabric, idx) => (
+                            <CarouselItem key={idx} className="md:basis-1/2 lg:basis-1/3">
+                              <div className="p-1">
+                                <Card className="border-0 bg-black/40 overflow-hidden">
+                                  <CardContent className="p-0">
+                                    <div 
+                                      className="cursor-pointer relative group"
+                                      onClick={() => handleFabricClick(idx)}
+                                    >
+                                      <AspectRatio ratio={1/1}>
+                                        <img
+                                          src={fabric.image}
+                                          alt={fabric.name}
+                                          className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                                        />
+                                      </AspectRatio>
+                                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
+                                        <div className="p-4 w-full">
+                                          <h3 className="text-white font-bold text-lg mb-1">{fabric.name}</h3>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </CardContent>
+                                </Card>
+                              </div>
+                            </CarouselItem>
+                          ))}
+                        </CarouselContent>
+                        <CarouselPrevious className="left-0 bg-black/60 hover:bg-black/80 border-white/20 text-white" />
+                        <CarouselNext className="right-0 bg-black/60 hover:bg-black/80 border-white/20 text-white" />
+                      </Carousel>
+                    </div>
+                  ) : (
+                    <div className={`grid ${viewMode === 'grid' ? 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'} gap-4 sm:gap-6 w-full`}>
+                      {fabrics.map((fabric, idx) => (
+                        <div 
+                          key={idx} 
+                          className="group cursor-pointer relative overflow-hidden rounded-md bg-black/20 border border-white/5"
+                          onClick={() => handleFabricClick(idx)}
+                        >
+                          <AspectRatio ratio={1/1}>
+                            <img
+                              src={fabric.image}
+                              alt={fabric.name}
+                              className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                            />
+                          </AspectRatio>
+                          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-black/0 pt-10 pb-4 px-4">
+                            <h3 className="text-white font-medium text-sm sm:text-base uppercase tracking-wider">{fabric.name}</h3>
+                          </div>
+                          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span className="bg-white/90 text-black px-4 py-2 rounded-full text-sm font-medium">View Details</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </TabsContent>
+                <TabsContent value="silk" className="w-full">
+                  <div className={`grid ${viewMode === 'grid' ? 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'} gap-4 sm:gap-6 w-full`}>
+                    {fabrics.filter(fabric => fabric.name.toLowerCase().includes('silk')).map((fabric, idx) => (
+                      <div 
+                        key={idx} 
+                        className="group cursor-pointer relative overflow-hidden rounded-md bg-black/20 border border-white/5"
+                        onClick={() => handleFabricClick(idx)}
+                      >
+                        <AspectRatio ratio={1/1}>
+                          <img
+                            src={fabric.image}
+                            alt={fabric.name}
+                            className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                          />
+                        </AspectRatio>
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-black/0 pt-10 pb-4 px-4">
+                          <h3 className="text-white font-medium text-sm sm:text-base uppercase tracking-wider">{fabric.name}</h3>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </TabsContent>
+                <TabsContent value="wool" className="w-full">
+                  <div className={`grid ${viewMode === 'grid' ? 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'} gap-4 sm:gap-6 w-full`}>
+                    {fabrics.filter(fabric => fabric.name.toLowerCase().includes('wool')).map((fabric, idx) => (
+                      <div 
+                        key={idx} 
+                        className="group cursor-pointer relative overflow-hidden rounded-md bg-black/20 border border-white/5"
+                        onClick={() => handleFabricClick(idx)}
+                      >
+                        <AspectRatio ratio={1/1}>
+                          <img
+                            src={fabric.image}
+                            alt={fabric.name}
+                            className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                          />
+                        </AspectRatio>
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-black/0 pt-10 pb-4 px-4">
+                          <h3 className="text-white font-medium text-sm sm:text-base uppercase tracking-wider">{fabric.name}</h3>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </TabsContent>
+                <TabsContent value="special" className="w-full">
+                  <div className={`grid ${viewMode === 'grid' ? 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'} gap-4 sm:gap-6 w-full`}>
+                    {fabrics.filter(fabric => ['brocade', 'velvet'].some(type => fabric.name.toLowerCase().includes(type))).map((fabric, idx) => (
+                      <div 
+                        key={idx} 
+                        className="group cursor-pointer relative overflow-hidden rounded-md bg-black/20 border border-white/5"
+                        onClick={() => handleFabricClick(idx)}
+                      >
+                        <AspectRatio ratio={1/1}>
+                          <img
+                            src={fabric.image}
+                            alt={fabric.name}
+                            className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                          />
+                        </AspectRatio>
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-black/0 pt-10 pb-4 px-4">
+                          <h3 className="text-white font-medium text-sm sm:text-base uppercase tracking-wider">{fabric.name}</h3>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </TabsContent>
               </Tabs>
               
               <div className="flex gap-2 bg-black/30 p-1 rounded-md border border-white/10">
@@ -76,70 +206,6 @@ const Fabrics = () => {
                 </button>
               </div>
             </div>
-            
-            <TabsContent value="all" className="w-full">
-              {viewMode === 'carousel' ? (
-                <div className="w-full py-10">
-                  <Carousel className="w-full max-w-4xl mx-auto">
-                    <CarouselContent>
-                      {fabrics.map((fabric, idx) => (
-                        <CarouselItem key={idx} className="md:basis-1/2 lg:basis-1/3">
-                          <div className="p-1">
-                            <Card className="border-0 bg-black/40 overflow-hidden">
-                              <CardContent className="p-0">
-                                <div 
-                                  className="cursor-pointer relative group"
-                                  onClick={() => handleFabricClick(idx)}
-                                >
-                                  <AspectRatio ratio={1/1}>
-                                    <img
-                                      src={fabric.image}
-                                      alt={fabric.name}
-                                      className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
-                                    />
-                                  </AspectRatio>
-                                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
-                                    <div className="p-4 w-full">
-                                      <h3 className="text-white font-bold text-lg mb-1">{fabric.name}</h3>
-                                    </div>
-                                  </div>
-                                </div>
-                              </CardContent>
-                            </Card>
-                          </div>
-                        </CarouselItem>
-                      ))}
-                    </CarouselContent>
-                    <CarouselPrevious className="left-0 bg-black/60 hover:bg-black/80 border-white/20 text-white" />
-                    <CarouselNext className="right-0 bg-black/60 hover:bg-black/80 border-white/20 text-white" />
-                  </Carousel>
-                </div>
-              ) : (
-                <div className={`grid ${viewMode === 'grid' ? 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'} gap-4 sm:gap-6 w-full`}>
-                  {fabrics.map((fabric, idx) => (
-                    <div 
-                      key={idx} 
-                      className="group cursor-pointer relative overflow-hidden rounded-md bg-black/20 border border-white/5"
-                      onClick={() => handleFabricClick(idx)}
-                    >
-                      <AspectRatio ratio={1/1}>
-                        <img
-                          src={fabric.image}
-                          alt={fabric.name}
-                          className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
-                        />
-                      </AspectRatio>
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-black/0 pt-10 pb-4 px-4">
-                        <h3 className="text-white font-medium text-sm sm:text-base uppercase tracking-wider">{fabric.name}</h3>
-                      </div>
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span className="bg-white/90 text-black px-4 py-2 rounded-full text-sm font-medium">View Details</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </TabsContent>
           </div>
         </div>
       </div>
